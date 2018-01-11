@@ -39,6 +39,11 @@ group :development, :test do
   gem 'byebug', platform: :mri
 end
 
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
+
 group :development do
   gem 'sqlite3'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
@@ -52,7 +57,3 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-group :production do
-  gem 'pg'
-  gem 'rails_12factor'
-end
