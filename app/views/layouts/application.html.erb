@@ -10,15 +10,7 @@
 
   <body>
     <h1>Alpha blog</h1>
+    <%= render 'layouts/messages' %>
     <%= yield %>
-    <% flash.each do |name, msg| %>
-
-    <ul>
-
-      <li><%= msg %></li>
-
-    </ul>
-
-  <% end %>
   </body>
 </html>
