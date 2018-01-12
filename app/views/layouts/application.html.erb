@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    <h1>Alpha blog</h1>
+    <%= flash.each do |name,msg| %>
+  <ul>
+    <li><%= msg %></li>
+  </ul>
+    <% end%>
     <%= yield %>
   </body>
 </html>
