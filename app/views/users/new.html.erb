@@ -1,0 +1,31 @@
+<% if @user.errors.any? %>
+
+  <h2>The following errors prevented the article from getting created</h2>
+
+  <ul>
+
+    <% @article.errors.full_messages.each do |msg| %>
+
+      <li><%= msg %></li>
+
+    <% end %>
+
+  </ul>
+
+<% end %>
+
+<%= form_for @user do |f| %>
+  <p>
+    <%= f.label :username %><br>
+    <%= f.text_field :username%>
+  </p>
+    <%= f.label :email %><br>
+    <%= f.email_field :email%>
+  </p>
+  <p>
+    <%= f.label :password%><br>
+    <%= f.password_field :password%>
+  </p>
+  <%= f.submit "Sign Up" %>
+
+<% end %>
