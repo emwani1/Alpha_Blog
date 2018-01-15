@@ -4,12 +4,14 @@
   <tr>
     <th>Title</th>
     <th>Description</th>
-    <th>Actions</th>
+    <th>Created by</th>
+    <th>  Actions</th>
   </tr>
   <% @articles.each do |article| %>
   <tr>
     <td><%= article.title %></td>
     <td><%= article.description %></td>
+    <td><%= article.user.username %></td>
     <td><%= link_to 'Edit',edit_article_path(article.id) %></td>
     <td><%= link_to 'Show Article',article_path(article.id) %></td>
     <td><%= link_to 'Delete Article', article_path(article), method: :delete, data:{confirm:"Are you sure"} %></td>
