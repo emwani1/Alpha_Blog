@@ -2,6 +2,6 @@
 <p><%= @article.title %></p>
 <p><%= @article.description %></p>
 <%= link_to "Back to Articles", articles_path %>|
-<% if logged_in? && current_user == @article.user %>
+<% if logged_in? && (current_user == @article.user || current_user.admin?) %>
 <%= link_to "Edit Articles", edit_article_path(@article) %>
 <% end %>

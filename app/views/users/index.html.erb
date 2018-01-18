@@ -14,6 +14,7 @@
       <li>
         <small>
           <%= pluralize(user.articles.count,"article") if user.articles %>
+          <%= link_to "Delete Account" ,user_path(user), method: :delete, data: {confirm: "Are you sure you want to delete the user"} %>
         </small>
       </li>
     </div>

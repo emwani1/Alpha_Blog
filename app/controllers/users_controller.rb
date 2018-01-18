@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   require 'will_paginate/array'
   before_action :set_user, only: [:edit,:update,:show]
-  before_action :require_same_user , only:[:edit,:update,:delete]
+  before_action :require_same_user , only:[:edit,:updated, :destroy]
+  before_action :require_admin, only: [:destroy]
   def new
     @user = User.new
   end
@@ -39,19 +40,36 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:sucess] = "User was destroyed"
+    redirect_to users_path
+  end
+
 
 
   private
   def user_params
     params.require(:user).permit(:username,:email,:password)
   end
+
   def set_user
     @user = User.find(params[:id])
   end
+
   def require_same_user
-    if logged_in? && current_user != @user
+    if !current_user != @user and !current_user.admin?
       flash[:danger] = "You can only edit your own account"
       redirect_to root_path
     end
   end
+
+  def require_admin
+    if logged_in? && !current_user.admin?
+      flash[:danger] = "Only admins can perfrom that actions"
+      redirect_to root_path
+    end
+  end
+
 end
